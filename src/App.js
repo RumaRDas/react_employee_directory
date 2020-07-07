@@ -34,8 +34,9 @@ function App() {
 
       <Header />
       <Search search={search} onInputchange={onInputchange} />
+      <div className="container">
       <Employees employees={employees} />
-
+      </div>
     </div>
   );
 }
