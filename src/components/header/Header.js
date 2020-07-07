@@ -1,7 +1,8 @@
 import React from 'react';
+import "./style.css";
 
 const Header = (props) => {
-    const {search, onInputChange,searchClick} = props;
+ 
     return (
         <div>
         <div className="jumbotron">
