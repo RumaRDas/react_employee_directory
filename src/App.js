@@ -9,16 +9,23 @@ import './App.css';
 function App() {
   const [search, setSearch] = useState("");
   const [employees, setEmployees] = useState([]);
-
+  const [filtemployees, setFiltemployees] = useState([]);
+const url =`https://randomuser.me/api/?results=20& `;
   useEffect(() => {
     getEmployees();
+
   }, [])
 
   const getEmployees = async () => {
-    const res = await Axios.get(`https://randomuser.me/api/?results=20& age=${search}`);
+    try{const res = await Axios.get(url);
     //console.log(res.data);
     setEmployees(res.data.results);
-  };
+    setFiltemployees(res.data.results);  
+  } catch(err){
+    throw new Error(err)
+  }
+  return employees;
+};
 
   //for search option
   const onInputchange = (e) => {
@@ -26,6 +33,7 @@ function App() {
     setSearch(e.target.value);
   }
   const searchClick = () => {
+ 
     getEmployees();
   }
 
@@ -33,7 +41,7 @@ function App() {
     <div className="App">
 
       <Header />
-      <Search search={search} onInputchange={onInputchange} />
+      <Search search={search} onInputchange={onInputchange} searchClick={searchClick} />
       <div className="container">
         <Employees employees={employees} />
       </div>
