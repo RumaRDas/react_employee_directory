@@ -12,7 +12,7 @@ const Search =(props) => {
              value={props.search}  
              onChange={props.onInputchange}/>
             <div className="input-group-append">
-              <button className="btn btn-dark">Search</button>
+              <button className="btn btn-dark"  onClick={props.searchClick}>Search</button>
             </div>
         </div>
             </div>

@@ -7,27 +7,27 @@ import Axios from 'axios';
 import './App.css';
 
 function App() {
-  const [search, setSearch] = useState("name");
+  const [search, setSearch] = useState("");
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
- getEmployees();
+    getEmployees();
   }, [])
 
   const getEmployees = async () => {
-    const res = await Axios.get(`https://randomuser.me/api/?results=20`);
+    const res = await Axios.get(`https://randomuser.me/api/?results=20& age=${search}`);
     //console.log(res.data);
     setEmployees(res.data.results);
   };
 
   //for search option
   const onInputchange = (e) => {
-    console.log(e.target.value);
+   // console.log(e.target.value);
     setSearch(e.target.value);
   }
-  // const searchClick = () =>{
-  //   getEmployees();
-  // }
+  const searchClick = () => {
+    getEmployees();
+  }
 
   return (
     <div className="App">
@@ -35,7 +35,7 @@ function App() {
       <Header />
       <Search search={search} onInputchange={onInputchange} />
       <div className="container">
-      <Employees employees={employees} />
+        <Employees employees={employees} />
       </div>
     </div>
   );
